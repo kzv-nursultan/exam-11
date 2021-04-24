@@ -4,15 +4,14 @@ const auth = async (req, res, next) => {
     const token = req.get('Authorization');
 
     if(!token) {
-        return res.status(401).send('Token not exist. Please sign in');
+        return res.status(401).send({message: 'Token not exist. Please sign in'});
     };
 
     const user = Users.findOne({token});
 
     if (!user) {
-        return res.status(401).send('')
+        return res.status(401).send({message: 'User not found'})
     };
-
     req.user = user;
     next()
 };

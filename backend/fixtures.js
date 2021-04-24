@@ -16,7 +16,6 @@ const run = async () => {
         username: 'user001',
         password: 'user001',
         token: nanoid(),
-        email: 'user001@gmail.com',
         phone: '098098234',
         display_name: 'user001'
 
@@ -24,14 +23,12 @@ const run = async () => {
         username: 'user002',
         password: 'user002',
         token: nanoid(),
-        email:'user002@gmail.com',
         phone:'8970124',
         display_name: 'user002'
     },{
         username: 'user003',
         password: 'user003',
         token: nanoid(),
-        email: 'user003@gmail.com',
         phone: '768232287',
         display_name: 'user003'
     });

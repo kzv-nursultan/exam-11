@@ -5,9 +5,10 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import {NavLink} from "react-router-dom";
 import {Grid} from "@material-ui/core";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import ToolBar from "../../components/Toolbar/Toolbar";
 import LoggedInUser from "../../components/LoggedUser/LoggedUser";
+import {setInitial} from "../../store/actions/ItemsActions";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -37,14 +38,19 @@ const useStyles = makeStyles((theme) => ({
 
 const ButtonAppBar = () => {
     const classes = useStyles();
+    const dispatch = useDispatch();
     const user = useSelector(state=>state.user.loginUser.user);
+
+    const clickHandler = () => {
+        dispatch(setInitial());
+    };
 
     return (
         <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
-                        <NavLink to='/' className={classes.links}> <strong> Posts Page </strong></NavLink>
+                        <NavLink to='/' className={classes.links} onClick={clickHandler}> <strong> SHOP API </strong></NavLink>
                     </Typography>
                     <Grid item className={classes.navs}>
                         {user ? (<LoggedInUser username={user.username}/>) : (<ToolBar/>)}

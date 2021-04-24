@@ -1,11 +1,13 @@
 import {applyMiddleware, combineReducers, compose, createStore} from "redux";
 import thunk from "redux-thunk";
 import {usersReducer} from "./reducers/userReducer";
+import {itemReducer} from "./reducers/itemReducer";
+import {categoryReducer} from "./reducers/categoryReducer";
 
 const saveToLocalStorage = state => {
     try {
         const serializedState = JSON.stringify(state);
-        localStorage.setItem('forumUser', serializedState);
+        localStorage.setItem('shopUser', serializedState);
     } catch (error) {
         console.log('Could not save to local storage');
     };
@@ -13,7 +15,7 @@ const saveToLocalStorage = state => {
 
 const loadFromLocalStorage = () => {
     try {
-        const serializedState = localStorage.getItem('forumUser');
+        const serializedState = localStorage.getItem('shopUser');
         if (serializedState === null){
             return undefined;
         }
@@ -24,7 +26,9 @@ const loadFromLocalStorage = () => {
 };
 
 const rootReducer = combineReducers({
+    goods: itemReducer,
     user : usersReducer,
+    category: categoryReducer,
 });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

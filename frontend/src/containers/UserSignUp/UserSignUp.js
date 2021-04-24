@@ -35,10 +35,9 @@ const UserSingUp = () => {
     const dispatch = useDispatch();
     const [user, setUser] = useState({
         username:'',
-        email:'',
+        password:'',
+        display_name:'',
         phone:'',
-        name:'',
-        password:''
     });
     const error = useSelector(state => state.user.error);
     const newUser = useSelector(state=>state.user.data);
@@ -73,6 +72,7 @@ const UserSingUp = () => {
                 <strong>sign up</strong>
             </Typography>
             <form onSubmit={onSubmitHandler} className={classes.formBlock}>
+
                 {newUser._id && (
                     <Grid item>
                         <Alert severity="success">
@@ -81,6 +81,7 @@ const UserSingUp = () => {
                         </Alert>
                     </Grid>
                 )}
+
                 <FormInput
                     name='username'
                     label='Username'
@@ -99,6 +100,25 @@ const UserSingUp = () => {
                     type='password'
                     error={Boolean(getFieldError('password'))}
                     helperText={getFieldError('password')}/>
+
+                <FormInput
+                    name='display_name'
+                    label='Display name'
+                    onChange={onChangeHandler}
+                    required={true}
+                    value={user.display_name}
+                    error={Boolean(getFieldError('display_name'))}
+                    helperText={getFieldError('display_name')}/>
+
+                <FormInput
+                    name='phone'
+                    label='Phone'
+                    onChange={onChangeHandler}
+                    required={true}
+                    value={user.phone}
+                    error={Boolean(getFieldError('phone'))}
+                    helperText={getFieldError('phone')}/>
+
                 <Button
                     type='submit'
                     color='primary'

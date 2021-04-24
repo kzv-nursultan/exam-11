@@ -5,6 +5,7 @@ import Button from "@material-ui/core/Button";
 import {Menu, MenuItem} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import {logOutUser} from "../../store/actions/UsersActions";
+import {setInitial} from "../../store/actions/ItemsActions";
 
 const useStyle = makeStyles({
     header: {
@@ -26,8 +27,9 @@ const LoggedInUser = ({username}) => {
         setAnchorEl(null);
     };
 
-    const historyHandler = () => {
-        history.push('/addPost');
+    const historyHandler = async () => {
+        await dispatch(setInitial());
+        history.push('/add');
     };
 
     const loggingOut = async () => {
@@ -52,7 +54,7 @@ const LoggedInUser = ({username}) => {
                 onClose={handleClose}
             >
                 <MenuItem onClick={loggingOut}> Logout</MenuItem>
-                <MenuItem onClick={historyHandler}> Add new Post</MenuItem>
+                <MenuItem onClick={historyHandler}> New Advertising </MenuItem>
             </Menu>
         </>
     );

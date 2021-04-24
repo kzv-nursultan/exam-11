@@ -1,10 +1,12 @@
 import React from 'react';
+import {useDispatch} from "react-redux";
 import {makeStyles} from '@material-ui/core/styles';
+import {useHistory} from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
 import {CardMedia, Typography} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
-import {useHistory} from "react-router-dom";
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import {setInitial} from "../../store/actions/ItemsActions";
 
 const useStyles = makeStyles({
     main:{
@@ -28,15 +30,15 @@ const useStyles = makeStyles({
     }
 });
 
-const ItemCard = ({author, title, datetime, image, id}) => {
+const ItemCard = ({price, title, image, id}) => {
     const classes = useStyles();
     const history = useHistory();
-
+    const dispatch = useDispatch();
     const url = 'http://localhost:8000' + image;
-    const noImage = 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg';
 
-    const readButtonHandler = () => {
-        history.push('/post/' + id);
+    const readButtonHandler = async () => {
+        await dispatch(setInitial())
+        history.push('/more/' + id);
     };
 
     return (
@@ -44,7 +46,7 @@ const ItemCard = ({author, title, datetime, image, id}) => {
             <Grid item className={classes.imageBlock} xs={3}>
                 <CardMedia
                     className={classes.media}
-                    image={image ? url : noImage}
+                    image={url}
                     title="post image"
                 />
             </Grid>
@@ -53,10 +55,7 @@ const ItemCard = ({author, title, datetime, image, id}) => {
                     Title : {title}
                 </Typography>
                 <Typography variant='h5' component='h2'>
-                    Author: {author}
-                </Typography>
-                <Typography variant='h5' component='h2'>
-                    Datetime : {datetime}
+                    Price: {price}
                 </Typography>
             </Grid>
             <Button

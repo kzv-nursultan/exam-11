@@ -36,8 +36,10 @@ const useStyles = makeStyles({
 const UserSingIn = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
+
     const error = useSelector(state=>state.user.loginError);
     const loggedUser = useSelector(state=>state.user.loginUser);
+
     const [user, setUser] = useState({
         username:'',
         password:''

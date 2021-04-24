@@ -5,7 +5,7 @@ import {
     LOGIN_USER_SUCCESS,
     POST_USER_FAILURE,
     POST_USER_REQUEST,
-    POST_USER_SUCCESS
+    POST_USER_SUCCESS, SET_TO_INITIAL
 } from "../actions/UsersActions";
 
 const initialState = {
@@ -31,6 +31,8 @@ export const usersReducer = (state = initialState, action) => {
             return {...state, loginUser: action.value, loginLoading: false};
         case LOGIN_USER_FAILURE:
             return {...state, loginError: action.error, loginLoading: false};
+        case SET_TO_INITIAL:
+            return {...state, error: null, loginError: null};
         case LOG_OUT_USER:
             return {...initialState};
         default:

@@ -10,6 +10,8 @@ export const LOGIN_USER_FAILURE = 'LOGIN_USER_FAILURE';
 
 export const LOG_OUT_USER = 'LOG_OUT_USER';
 
+export const SET_TO_INITIAL = 'SET_TO_INITIAL';
+
 export const postUserRequest = () => ({type:POST_USER_REQUEST});
 export const postUserSuccess = value => ({type:POST_USER_SUCCESS, value});
 export const postUserFailure = error => ({type:POST_USER_FAILURE, error});
@@ -60,4 +62,14 @@ export const loginUser = (path, data) => {
             }
         }
     };
+};
+
+export const setInitial = () => {
+    return async dispatch => {
+        try {
+            dispatch({type: SET_TO_INITIAL});
+        } catch (e){
+            console.error(e)
+        }
+    }
 };

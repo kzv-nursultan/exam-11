@@ -5,6 +5,7 @@ const router = express.Router();
 router.post('/', async (req, res)=>{
     try {
         const newUser = new Users(req.body);
+        await newUser.generateToken();
         await newUser.save();
         res.send(newUser);
     } catch (e) {
